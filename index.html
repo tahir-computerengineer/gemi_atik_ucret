@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tahir Ulaş">
+    <title>Gemi Atık Ücreti Hesaplama</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="main-nav">
+            <a href="index.html" class="active">Hesaplama Aracı</a>
+            <a href="mevzuat.html">Mevzuat & Rehber</a>
+            <a href="hakkimizda.html">Hakkımızda & İletişim</a>
+            <a href="gizlilik.html">Gizlilik Politikası</a>
+        </nav>
+
+        <div class="header-area">
+            <img src="cruise-ship.png" alt="cruise-ship">
+            <h4 id="ana-baslik">GEMİ ATIK ÜCRETİ HESAPLAMA</h4>
+        </div>
+
+        <div class="form-group">
+            <label for="language">Select Language:</label>
+            <select id="language" onchange="changeLanguage()">
+                <option value="tr" selected>Türkçe</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+		<div class="form-group">
+			<label id="kur-label" for="kur">TCMB Euro Satış Kuru:</label>
+			<input type="number" id="kur" step="0.0001" style="width: 100px;" name="kur">
+			<button type="button" class="btn-refresh" onclick="tcmbKuruGetir()">🔄</button>
+		</div>
+
+        <div class="form-group">
+            <input type="checkbox" id="sabit-ucret" name="sabit-ucret" value="sabit-ucret">
+            <label id="sabit-ucret-label" for="sabit-ucret">Gemi sabit ücrete tabi ise işaretleyiniz</label>
+        </div>
+
+        <div class="form-group">
+            <label id="grt-label" for="grt">Groston:</label>
+            <input type="number" id="grt" style="width: 100px;" name="grt">
+        </div>
+
+        <div class="radio-group">
+            <label><input type="radio" id="mesaiici" name="mesai" value="mesaiici"> <span id="mesaiici-label">Mesai İçi</span></label>
+            <label><input type="radio" id="mesaidisi" name="mesai" value="mesaidisi"> <span id="mesaidisi-label">Mesai Dışı</span></label>
+        </div>
+
+        <div class="radio-group">
+            <label><input type="radio" id="liman" name="mevkii" value="liman"> <span id="liman-label">Limanda</span></label>
+            <label><input type="radio" id="demir" name="mevkii" value="demir"> <span id="demir-label">Demirde</span></label>
+        </div>
+
+        <div class="radio-group">
+            <label><input type="radio" id="indirimsiz" name="indirim" value="indirimsiz" checked> <span id="indirimsiz-label">İndirimsiz</span></label>
+            <label><input type="radio" id="indirim25" name="indirim" value="indirim25"> <span id="indirim25-label">%25 indirim</span></label>
+            <label><input type="radio" id="indirim50" name="indirim" value="indirim50"> <span id="indirim50-label">%50 indirim</span></label>
+        </div>
+
+        <div class="waste-grid">
+            <div class="item">
+                <label id="sintine-label" for="sintine">Sintine:</label>
+                <input type="number" id="sintine" name="sintine">
+            </div>
+            <div class="item">
+                <label id="slac-label" for="slac">Slaç:</label>
+                <input type="number" id="slac" name="slac">
+            </div>
+            <div class="item">
+                <label id="atikyag-label" for="atikyag">Atık Yağ:</label>
+                <input type="number" id="atikyag" name="atikyag">
+            </div>
+            <div class="item">
+                <label id="slop-label" for="slop">Slop:</label>
+                <input type="number" id="slop" name="slop">
+            </div>
+            <div class="item">
+                <label id="kirlibalast-label" for="kirlibalast">Kirli Balast:</label>
+                <input type="number" id="kirlibalast" name="kirlibalast">
+            </div>
+            <div class="item">
+                <label id="katislac-label" for="katislac">Katı Slaç:</label>
+                <input type="number" id="katislac" name="katislac">
+            </div>
+            <div class="item">
+                <label id="pissu-label" for="pissu">Pis Su:</label>
+                <input type="number" id="pissu" name="pissu">
+            </div>
+            <div class="item">
+                <label id="cop-label" for="cop">Çöp:</label>
+                <input type="number" id="cop" name="cop">
+            </div>
+            <div class="item">
+                <label id="ek6-label" for="ek6">Egzoz Gazı:</label>
+                <input type="number" id="ek6" name="ek6">
+            </div>
+        </div>
+
+        <div class="btn-area">
+            <button id="btn" onclick="hesapla();">Hesapla</button>
+            <button id="clear" onclick="clearFields();">Temizle</button>
+        </div>
+
+        <div class="result-area">
+            <h3 id="fiyat-euro-box">Euro (€) :</h3>
+            <h3 id="fiyat-tl-box">Türk Lirası (₺) :</h3>
+        </div>
+
+        <div id="hata-mesaji" class="error"></div>
+        <div id="hata-mesaji2" class="error"></div>
+
+        <footer style="margin-top: 15px; font-size: 11px; color: #777;">
+            <p>Site developed by <a href="https://github.com/tahir-computerengineer" target="_blank">Tahir</a></p>
+        </footer>
+    </div>
+
+    <script src="myScript.js"></script>               
+</body>
+</html>
